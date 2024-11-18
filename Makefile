@@ -6,7 +6,7 @@
 #    By: tmoragli <tmoragli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/16 14:15:57 by tmoragli          #+#    #+#              #
-#    Updated: 2024/09/18 00:13:00 by tmoragli         ###   ########.fr        #
+#    Updated: 2024/11/18 21:39:25 by tmoragli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ TESTER		= tester
 # ----------- COMPILER FLAGS -------
 CC			= nasm
 CFLAGS		= -f elf64 -g
+GCC			= gcc
+GCCFLAGS	= -Wall -Wextra -Werror -Iinc
 
 # ----------- FILES ----------------
 OBJ			= ./objs
@@ -26,7 +28,6 @@ SRCS		= is_null.s set_errno.s \
 MAIN_OBJ	= main.o
 
 OBJS		= $(patsubst %.s, $(OBJ)/%.o,$(SRCS))
-OBJB		= $(patsubst %.s, $(OBJ)/%.o,$(SRCB))
 
 # ----------- RULES ----------------
 all		: ${NAME}
@@ -36,17 +37,16 @@ $(NAME): ${OBJS}
 $(OBJ)/%.o	: $(SRC)/%.s | $(OBJ)
 	$(CC) $(CFLAGS)  $< -o $@
 
-$(OBJ)/%.o	: $(SRC)/%.s | $(OBJ)
-	$(CC) $(CFLAGS)  $< -o $@
-
-$(OBJ)		:
+$(OBJ)	:
 	mkdir $@
-	
-bonus	: ${OBJB} ${OBJS}
-	ar rcs ${NAME} ${OBJS} ${OBJB}
+
+tests	: ${NAME}
+	$(GCC) $(GCCFLAGS) -c main.c -o ${MAIN_OBJ}
+	${GCC} ${MAIN_OBJ} ${NAME} -o ${TESTER}
 
 clean	:
 	rm -rf ${OBJ}
+	rm -rf ${MAIN_OBJ}
 
 fclean	:	clean
 	rm -f ${NAME}
@@ -55,4 +55,4 @@ fclean	:	clean
 
 re		:	fclean all
 
-.PHONY	: all clean fclean re
+.PHONY	: all tests clean fclean re
