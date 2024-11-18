@@ -6,7 +6,7 @@
 /*   By: tmoragli <tmoragli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 14:26:40 by tmoragli          #+#    #+#             */
-/*   Updated: 2024/09/18 00:50:32 by tmoragli         ###   ########.fr       */
+/*   Updated: 2024/11/18 21:42:29 by tmoragli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main(void)
 	printf("Result: %ld, Errno: %d\n", ft_strlen("test"), errno);
 	printf("Result: %ld, Errno: %d\n", ft_strlen("H"), errno);
 	printf("Result: %ld, Errno: %d\n", ft_strlen("\0"), errno);
-	printf("Result: %ld, Errno: %d\n", ft_strlen(0), errno);
+	// printf("Result: %ld, Errno: %d\n", ft_strlen(0), errno); // -> Should crash like the original function
 	printf("---------------------------------------\n");
 	//ft_strcpy
 	printf("---------------FT_STRCPY---------------\n");
@@ -37,6 +37,7 @@ int main(void)
 	bzero(dest, 128 * sizeof(char));
 	printf("Dest: [%s], Errno: %d\n", ft_strcpy(dest, "\0"), errno);
 	bzero(dest, 128 * sizeof(char));
+	// printf("Dest: [%s], Errno: %d\n", ft_strcpy(dest, 0), errno); // -> Should crash like the original function
 	printf("---------------------------------------\n");
 	return (0);
 }
