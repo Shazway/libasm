@@ -6,7 +6,7 @@
 /*   By: tmoragli <tmoragli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:57:41 by tmoragli          #+#    #+#             */
-/*   Updated: 2024/09/18 00:46:45 by tmoragli         ###   ########.fr       */
+/*   Updated: 2024/11/20 02:00:03 by tmoragli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_list
 //Mandatory part
 extern size_t	ft_strlen(const char *s);
 extern char		*ft_strcpy(char *dest, const char *src);
-extern int		ft_srcmp(const char *s1, const char *s2);
+extern int		ft_strcmp(const char *s1, const char *s2);
 extern ssize_t	ft_write(int fd, const void *buf, size_t count);
 extern ssize_t	ft_read(int fd, void *buf, size_t count);
 extern char		*ft_strdup(const char *s);

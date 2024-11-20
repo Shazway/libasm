@@ -6,7 +6,7 @@
 #    By: tmoragli <tmoragli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/16 14:15:57 by tmoragli          #+#    #+#              #
-#    Updated: 2024/11/18 21:39:25 by tmoragli         ###   ########.fr        #
+#    Updated: 2024/11/20 01:56:14 by tmoragli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ GCCFLAGS	= -Wall -Wextra -Werror -Iinc
 OBJ			= ./objs
 SRC			= ./src
 SRCS		= is_null.s set_errno.s \
-			ft_strlen.s ft_strcpy.s #ft_strcmp.s ft_write.s ft_read.s ft_strdup.s
+			ft_strlen.s ft_strcpy.s ft_strcmp.s# ft_write.s ft_read.s ft_strdup.s
 MAIN_OBJ	= main.o
 
 OBJS		= $(patsubst %.s, $(OBJ)/%.o,$(SRCS))
