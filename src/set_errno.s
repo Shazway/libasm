@@ -1,9 +1,8 @@
 section .text
 	global set_errno
-	extern _errno_location
+	extern __errno_location
 
 set_errno:
-	call _errno_location
-
+	call __errno_location wrt ..plt
 	mov [rax], rdi
 	ret

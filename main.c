@@ -6,7 +6,7 @@
 /*   By: tmoragli <tmoragli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 14:26:40 by tmoragli          #+#    #+#             */
-/*   Updated: 2024/11/20 02:11:49 by tmoragli         ###   ########.fr       */
+/*   Updated: 2024/11/22 00:40:50 by tmoragli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,31 @@ int main(void)
 	printf("s1[]      s2[]     : %d\n", ft_strcmp("", ""));
 	//printf("s1[]      s2[]     : %d\n", ft_strcmp(0, 0)); // -> Should crash like the original function
 	printf("---------------------------------------\n");
+	printf("---------------FT_WRITE---------------\n");
+	ft_write(1, "Hello World!\n", 14);
+	printf("Errno: %d\n", errno);
+	ft_write(1, "\n", 1);
+	printf("Errno: %d\n", errno);
+	ft_write(1, "", 0);
+	printf("Errno: %d\n", errno);
+	char c = 'H';
+	ft_write(1, &c, 1);
+	printf("\nErrno: %d\n", errno);
+	c = '\n';
+	ft_write(1, &c, 1);
+	printf("Errno: %d\n", errno);
+	ft_write(42, "Hello World!\n", 14);
+	printf("Errno: %d\n", errno);
+	ft_write(1, "Hello World!\n", 14);
+	printf("Errno: %d\n", errno);
+	ft_write(1, NULL, 1);
+	printf("Errno: %d\n", errno);
+	ft_write(1, "Hello", 0);
+	printf("Errno: %d\n", errno);
+	int fd = open("/dev/full", O_RDONLY);
+	ft_write(fd, "Hello", 5);
+	printf("Errno: %d\n", errno);
+	close(fd);
+	printf("--------------------------------------\n");
 	return (0);
 }
