@@ -6,7 +6,7 @@
 /*   By: tmoragli <tmoragli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 14:26:40 by tmoragli          #+#    #+#             */
-/*   Updated: 2024/11/22 01:25:09 by tmoragli         ###   ########.fr       */
+/*   Updated: 2024/11/25 17:04:24 by tmoragli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int main(void)
 	printf("Result: %ld, Errno: %d\n", ft_strlen("\0"), errno);
 	// printf("Result: %ld, Errno: %d\n", ft_strlen(0), errno); // -> Should crash like the original function
 	printf("---------------------------------------\n");
+
 	//ft_strcpy
 	printf("---------------FT_STRCPY---------------\n");
 	char dest[128];
@@ -39,6 +40,7 @@ int main(void)
 	bzero(dest, 128 * sizeof(char));
 	// printf("Dest: [%s], Errno: %d\n", ft_strcpy(dest, 0), errno); // -> Should crash like the original function
 	printf("---------------------------------------\n");
+
 	//ft_strcpy
 	printf("---------------FT_STRCMP---------------\n");
 	printf("s1[Hello] s2[No]   : %d\n", ft_strcmp("Hello", "No"));
@@ -47,9 +49,10 @@ int main(void)
 	printf("s1[On]    s2[No]   : %d\n", ft_strcmp("On", "No"));
 	printf("s1[No]    s2[On]   : %d\n", ft_strcmp("No", "On"));
 	printf("s1[]      s2[]     : %d\n", ft_strcmp("", ""));
-	//printf("s1[]      s2[]     : %d\n", ft_strcmp(0, 0)); // -> Should crash like the original function
+	//printf("s1[]      s2[]: %d\n", ft_strcmp(0, 0)); // -> Should crash like the original function
 	printf("---------------------------------------\n");
 
+	//ft_write
 	printf("---------------FT_WRITE---------------\n");
 	// Regular tests
 	ft_write(1, "Hello World!\n", 14);
@@ -85,6 +88,7 @@ int main(void)
 	errno = 0;
 	printf("--------------------------------------\n");
 
+	//ft_read
 	printf("---------------FT_READ---------------\n");
 	// Normal txt with \n at the end and 13 characters total
 	fd = open("./ressources/normal.txt", O_RDONLY);
@@ -155,5 +159,32 @@ int main(void)
 	printf("[%s]\n", dest);
 	printf("Errno: %d\n", errno);
 	printf("-------------------------------------\n");
+
+	//ft_strdup
+	errno = 0;
+	printf("---------------FT_STRDUP---------------\n");
+	char *dst;
+	dst = strdup("Hello World\n");
+	printf("Result: [%s], Errno: %d\n", dst, errno);
+	free(dst);
+
+	dst = ft_strdup("test");
+	printf("Result: [%s], Errno: %d\n", dst, errno);
+	free(dst);
+
+	dst = ft_strdup("H");
+	printf("Result: [%s], Errno: %d\n", dst, errno);
+	free(dst);
+
+	dst = ft_strdup("\0");
+	printf("Result: [%s], Errno: %d\n", dst, errno);
+	free(dst);
+
+	dst = ft_strdup("");
+	printf("Result: [%s], Errno: %d\n", dst, errno);
+	free(dst);
+
+	// printf("Result: [%s], Errno: %d\n", ft_strdup(0), errno); // -> Should crash like the original function
+	printf("---------------------------------------\n");
 	return (0);
 }

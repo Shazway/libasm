@@ -6,7 +6,7 @@
 #    By: tmoragli <tmoragli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/16 14:15:57 by tmoragli          #+#    #+#              #
-#    Updated: 2024/11/22 00:51:34 by tmoragli         ###   ########.fr        #
+#    Updated: 2024/11/25 17:05:30 by tmoragli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,13 +18,16 @@ TESTER		= tester
 CC			= nasm
 CFLAGS		= -f elf64 -g
 GCC			= gcc
-GCCFLAGS	= -Wall -Wextra -Werror -Iinc
+GCCFLAGS	= -Wall -Wextra -Werror -Iinc -g3
 
 # ----------- FILES ----------------
 OBJ			= ./objs
 SRC			= ./src
 SRCS		= is_null.s set_errno.s \
-			ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s# ft_strdup.s
+			ft_strlen.s ft_strcpy.s \
+			ft_strcmp.s ft_write.s \
+			ft_read.s ft_strdup.s
+
 MAIN_OBJ	= main.o
 
 OBJS		= $(patsubst %.s, $(OBJ)/%.o,$(SRCS))
