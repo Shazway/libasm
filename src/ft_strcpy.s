@@ -1,17 +1,15 @@
 section .text
 	global ft_strcpy
-	extern set_errno
 
 ft_strcpy:
-	mov rax, rdi
+	mov rdx, rdi
 
-cpy_src:
-	cmp byte [rsi], 0
-	je return_dest
-	movsb
-	jmp cpy_src
-
-return_dest:
-	mov byte [rdi], 0
-	mov rdi, rax
+.copy_loop:
+	mov al, [rsi]
+	mov [rdi], al
+	inc rsi
+	inc rdi
+	test al, al
+	jnz .copy_loop
+	mov rax, rdx
 	ret
