@@ -1,48 +1,31 @@
 section .text
-	global ft_strcmp
-	extern ft_strlen
-	extern set_errno
+global ft_strcmp
 
 ft_strcmp:
-	xor rax, rax
 
-cmp_len:
-	push rdi
-	push rsi
-	call ft_strlen
-	mov rbx, rax
-	pop rdi
-	pop rsi
+.loop:
+	mov al, byte [rdi]
+	mov bl, byte [rsi]
 
-	push rsi
-	push rdi
-	mov rdi, rsi
-	call ft_strlen
-	mov rcx, rax
-	pop rsi
-	pop rdi
+	cmp al, bl
+	jg .greater
+	jl .lesser
 
-	cmp rbx, rcx
-	jg s1_greater
-	jl s2_greater
+	test al, al
+	je .equal
 
-cmp_bytes:
-	cmp byte [rdi], 0
-	je equal
-	cmp byte rdi, rsi
-	jg s1_greater
-	jl s2_greater
 	inc rdi
 	inc rsi
-	jmp cmp_bytes
+	jmp .loop
 
-s1_greater:
+.greater:
 	mov rax, 1
 	ret
 
-s2_greater:
+.lesser:
 	mov rax, -1
 	ret
-equal:
+
+.equal:
 	mov rax, 0
 	ret

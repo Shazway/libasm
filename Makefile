@@ -6,7 +6,7 @@
 #    By: tmoragli <tmoragli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/16 14:15:57 by tmoragli          #+#    #+#              #
-#    Updated: 2024/12/14 17:50:42 by tmoragli         ###   ########.fr        #
+#    Updated: 2024/12/21 17:17:15 by tmoragli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,11 @@ NAME		= libasm.a
 TESTER		= tester
 
 # ----------- COMPILER FLAGS -------
-CC			= nasm
-CFLAGS		= -f elf64 -g
-GCC			= gcc
-GCCFLAGS	= -Wall -Wextra -Werror -Iinc -g3
+CC				= nasm
+CFLAGS			= -f elf64 -g
+GCC				= gcc
+GCCFLAGS		= -Iinc -g3
+GCCFLAGS_CMP	= -Iinc -g3 -DLIBASM
 
 # ----------- FILES ----------------
 OBJ			= ./objs
@@ -45,6 +46,10 @@ $(OBJ)	:
 
 tests	: ${NAME}
 	$(GCC) $(GCCFLAGS) -c main.c -o ${MAIN_OBJ}
+	${GCC} ${MAIN_OBJ} ${NAME} -o ${TESTER}
+
+tests_cmp	: ${NAME}
+	$(GCC) $(GCCFLAGS_CMP) -c main.c -o ${MAIN_OBJ}
 	${GCC} ${MAIN_OBJ} ${NAME} -o ${TESTER}
 
 clean	:
